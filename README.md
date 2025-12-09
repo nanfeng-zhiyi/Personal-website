@@ -1,96 +1,95 @@
-# 个人网站
+# Personal Website
 
-这是一个使用 Next.js 构建的全栈个人网站，所有后端逻辑都集成在前端代码中，无需独立的后端服务器。
+This is a full-stack personal website built with Next.js. All backend logic is integrated into the frontend code, so no separate backend server is needed.
 
-## 技术栈
+## Tech Stack
 
-- **Next.js 14** - React 全栈框架
-- **TypeScript** - 类型安全
-- **Tailwind CSS** - 现代化样式设计
-- **API Routes** - 后端逻辑集成
+- **Next.js 14** - React full-stack framework
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Modern styling
+- **API Routes** - Integrated backend logic
 
-## 快速开始
+## Quick Start
 
-### 1. 安装依赖
+### 1. Install dependencies
 
 ```bash
 npm install
 ```
 
-或者使用 yarn:
+Or using yarn:
 
 ```bash
 yarn install
 ```
 
-### 2. 启动开发服务器
+### 2. Start the development server
 
 ```bash
 npm run dev
 ```
 
-或者使用 yarn:
+Or using yarn:
 
 ```bash
 yarn dev
 ```
 
-### 3. 打开浏览器
+### 3. Open the browser
 
-访问 [http://localhost:3000](http://localhost:3000) 查看网站
+Visit [http://localhost:3000](http://localhost:3000) to view the site.
 
-## 项目结构
+## Project Structure
 
 ```
 website/
 ├── app/
-│   ├── api/              # API Routes（后端逻辑）
+│   ├── api/              # API Routes (backend logic)
 │   │   ├── hello/
 │   │   ├── time/
 │   │   └── data/
-│   ├── about/            # 关于页面
-│   ├── api-demo/         # API 演示页面
-│   ├── globals.css       # 全局样式
-│   ├── layout.tsx        # 根布局
-│   └── page.tsx          # 首页
-├── public/               # 静态资源
+│   ├── about/            # About page
+│   ├── api-demo/         # API demo page
+│   ├── globals.css       # Global styles
+│   ├── layout.tsx        # Root layout
+│   └── page.tsx          # Home page
+├── public/               # Static assets
 ├── package.json
-├── tailwind.config.js    # Tailwind 配置
-└── tsconfig.json         # TypeScript 配置
+├── tailwind.config.js    # Tailwind config
+└── tsconfig.json         # TypeScript config
 ```
 
-## 功能特性
+## Features
 
-- ✅ 美观的现代化 UI 设计
-- ✅ 响应式布局，支持移动端
-- ✅ 深色模式支持
-- ✅ API Routes 示例（后端逻辑）
-- ✅ TypeScript 类型安全
-- ✅ 服务端渲染（SSR）
+- ✅ Modern, polished UI
+- ✅ Responsive layout with mobile support
+- ✅ Dark mode
+- ✅ API Routes examples (backend logic)
+- ✅ TypeScript type safety
+- ✅ Server-Side Rendering (SSR)
 
-## 开发命令
+## Development Commands
 
-- `npm run dev` - 启动开发服务器（本地运行）
-- `npm run build` - 构建生产版本
-- `npm run start` - 启动生产服务器
-- `npm run lint` - 运行代码检查
+- `npm run dev` - Start the dev server (local)
+- `npm run build` - Build production bundle
+- `npm run start` - Start production server
+- `npm run lint` - Run linting
 
 ## API Routes
 
-所有后端逻辑都在 `app/api` 目录中：
+All backend logic lives in the `app/api` directory:
 
-- `/api/hello` - 返回问候语
-- `/api/time` - 返回服务器时间
-- `/api/data` - 返回示例数据
+- `/api/hello` - Returns a greeting
+- `/api/time` - Returns server time
+- `/api/data` - Returns sample data
 
-你可以在这些文件中添加任何后端逻辑，如数据库操作、文件处理、第三方 API 调用等。
+You can add any backend logic here, such as database operations, file handling, or third-party API calls.
 
-## 部署
+## Deployment
 
-这个项目可以轻松部署到：
+This project can be easily deployed to:
 
-- **Vercel**（推荐）- 一键部署，完全免费
-- **Netlify** - 同样支持 Next.js
-- **其他平台** - 任何支持 Node.js 的平台
-
+- **Vercel** (recommended) - One-click deploy, fully free
+- **Netlify** - Also supports Next.js
+- **Other platforms** - Any platform that supports Node.js
 
