@@ -93,10 +93,4 @@ website/
 - **Netlify** - 同样支持 Next.js
 - **其他平台** - 任何支持 Node.js 的平台
 
-## 下一步
-
-- 添加更多页面和功能
-- 集成数据库（如 Supabase、MongoDB）
-- 添加用户认证
-- 自定义样式和主题
 
