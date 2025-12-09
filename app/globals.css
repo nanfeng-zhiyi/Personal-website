@@ -1,0 +1,505 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0f;
+  --foreground: #e0e7ff;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overflow-x: hidden;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+main {
+  width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 科技风背景 - 极致性能优化 */
+.tech-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  /* 简化背景，减少渐变层数以提升性能 */
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+  /* 使用 GPU 加速 */
+  transform: translateZ(0);
+  /* 移除 will-change */
+  overflow: hidden;
+}
+
+.tech-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* 简化网格，增大间距以减少渲染负担 */
+  background-image: 
+    linear-gradient(rgba(0, 240, 255, 0.01) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.01) 1px, transparent 1px);
+  background-size: 100px 100px;
+  /* 使用 GPU 加速 */
+  transform: translateZ(0);
+  pointer-events: none;
+  /* 移除 will-change */
+}
+
+.tech-bg__image,
+.tech-bg__overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tech-bg__image {
+  background-size: cover;
+  background-position: center;
+  filter: saturate(1.1);
+  transform: scale(1.02);
+}
+
+.tech-bg__overlay {
+  background: radial-gradient(circle at top, rgba(14, 165, 233, 0.25), transparent 55%),
+    linear-gradient(180deg, rgba(8, 47, 73, 0.75), rgba(2, 6, 23, 0.9));
+  backdrop-filter: blur(4px);
+}
+
+@keyframes grid-move {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+/* 科技风组件样式 - 极致性能优化 */
+.glass-card {
+  background: rgba(15, 23, 42, 0.95);
+  /* 完全移除 backdrop-filter 以提升性能 */
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  /* 简化阴影，减少性能消耗 */
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.3);
+  /* 使用 GPU 加速 */
+  transform: translateZ(0);
+  /* 优化渲染 */
+  contain: layout style paint;
+  /* 禁用 will-change，避免不必要的优化层 */
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(0, 240, 255, 0.4);
+  /* 简化 hover 阴影 */
+  box-shadow: 0 8px 24px 0 rgba(0, 240, 255, 0.2), 0 0 0 1px rgba(0, 240, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* 液态玻璃主题 */
+.theme-liquid .glass-card {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.30), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.30), transparent 55%),
+    linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95));
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow:
+    0 18px 45px rgba(15, 23, 42, 0.88),
+    0 0 28px rgba(34, 211, 238, 0.16);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+}
+
+.theme-liquid .glass-card::before,
+.theme-liquid .glass-card::after {
+  content: '';
+  position: absolute;
+  border-radius: 999px;
+  opacity: 0.7;
+  filter: blur(22px);
+  pointer-events: none;
+}
+
+.theme-liquid .glass-card::before {
+  inset: -40% 10% auto auto;
+  background: radial-gradient(circle at top, rgba(248, 250, 252, 0.95), transparent 55%);
+  opacity: 0.45;
+}
+
+.theme-liquid .glass-card::after {
+  inset: auto auto -45% 5%;
+  background: radial-gradient(circle at bottom, rgba(56, 189, 248, 0.7), transparent 55%);
+  opacity: 0.35;
+}
+
+.theme-liquid .glass-card:hover {
+  border-color: rgba(191, 219, 254, 0.9);
+  box-shadow:
+    0 22px 60px rgba(15, 23, 42, 0.95),
+    0 0 40px rgba(56, 189, 248, 0.36);
+}
+
+/* 在移动端进一步降低特效强度以提升帧率 */
+@media (max-width: 768px) {
+  .tech-bg__overlay {
+    backdrop-filter: none;
+  }
+
+  .theme-liquid .glass-card {
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.85);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .theme-liquid .glass-card::before,
+  .theme-liquid .glass-card::after {
+    display: none;
+  }
+
+  /* 移动端优化卡片间距 */
+  .glass-card {
+    padding: 1rem 1.25rem;
+  }
+
+  /* 移动端优化文字大小 */
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) and (pointer: coarse) {
+  .glass-card:hover {
+    transform: none;
+  }
+}
+
+.neon-text {
+  /* 简化文字阴影以提升性能 */
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6), 0 0 16px rgba(0, 240, 255, 0.4);
+  /* 使用 GPU 加速 */
+  transform: translateZ(0);
+  animation: neon-pulse 3s ease-in-out infinite;
+}
+
+@keyframes neon-pulse {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.6), 0 0 16px rgba(0, 240, 255, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 12px rgba(0, 240, 255, 0.8), 0 0 24px rgba(0, 240, 255, 0.6);
+  }
+}
+
+.neon-border {
+  position: relative;
+}
+
+.neon-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(45deg, #00f0ff, #0066ff, #8b5cf6, #ec4899);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  /* 移除动画以提升性能 */
+  opacity: 0.6;
+  will-change: auto;
+}
+
+@keyframes border-rotate {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* 粒子效果背景 */
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(0, 240, 255, 0.8);
+  border-radius: 50%;
+  animation: particle-float 15s infinite;
+  box-shadow: 0 0 6px rgba(0, 240, 255, 0.8);
+}
+
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(100px);
+    opacity: 0;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Markdown 内容样式 */
+.prose-invert {
+  --tw-prose-body: rgba(226, 232, 240, 0.85);
+  --tw-prose-headings: #67e8f9;
+  --tw-prose-links: #22d3ee;
+  --tw-prose-bold: #fbcfe8;
+  --tw-prose-counters: #a5b4fc;
+  --tw-prose-bullets: #a78bfa;
+  --tw-prose-hr: rgba(45, 212, 191, 0.4);
+  --tw-prose-quotes: #c4b5fd;
+  --tw-prose-quote-borders: rgba(139, 92, 246, 0.6);
+  --tw-prose-code: #f9a8d4;
+  --tw-prose-pre-code: #f8fafc;
+  --tw-prose-pre-bg: #0f172a;
+}
+
+.prose pre {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(45, 212, 191, 0.25);
+  background: #0f172a;
+  overflow-x: auto;
+}
+
+.prose img {
+  border-radius: 0.75rem;
+}
+
+.prose code {
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.95em;
+}
+
+.prose blockquote {
+  background: rgba(59, 130, 246, 0.08);
+  border-left: 4px solid rgba(59, 130, 246, 0.6);
+  padding: 1rem 1.5rem;
+  border-radius: 0 1rem 1rem 0;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.5rem;
+}
+
+.hljs {
+  background: transparent;
+  color: #e2e8f0;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #f472b6;
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-name,
+.hljs-type {
+  color: #34d399;
+}
+
+.hljs-comment {
+  color: #64748b;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-symbol {
+  color: #fbbf24;
+}
+
+@keyframes progress-bar {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-progress-bar {
+  animation: progress-bar 1.6s ease-out forwards;
+}
+
+/* 初始动画附加动效 */
+@keyframes reveal-grid {
+  from {
+    transform: translate3d(-10px, -10px, 0);
+  }
+  to {
+    transform: translate3d(10px, 10px, 0);
+  }
+}
+
+.animate-reveal-grid {
+  animation: reveal-grid 6s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(0.9);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-24px) scale(1.1);
+    opacity: 0;
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes rotate-slow {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 14s linear infinite;
+}
+
+@keyframes pulse-slow {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* 技能条闪烁动画 */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* 页面过渡动画优化 */
+.page-content {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 页面过渡时的加载指示器 */
+@keyframes page-transition-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.page-transition-shimmer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(6, 182, 212, 0.5),
+    rgba(139, 92, 246, 0.5),
+    transparent
+  );
+  z-index: 9999;
+  animation: page-transition-shimmer 0.5s ease-out;
+  pointer-events: none;
+}
+
+/* 减少动画时的重绘 */
+@media (prefers-reduced-motion: reduce) {
+  .page-content,
+  .page-content * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
